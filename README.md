@@ -17,11 +17,12 @@ Include with require:
 var voucher_codes = require('voucher-code-generator');
 ```
 
-Generate codes of requested length:
+Generate 5 codes, each 8 characters long:
 ```
 voucher_codes.generate({
-    length: 8
+    length: 8,
+    count: 5
 });
 ```
 
-Sample result: `B5xdYJn1`
+Sample result: `['FR6bwx1q', 'ByamOdWV', '7roFwfQs', 'rmWlwvll', 'pgih5eAB']`
