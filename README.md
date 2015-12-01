@@ -1,5 +1,9 @@
 ## Voucher Code Generator
 
+Generate unique, hard to guess coupon codes.
+
+This library originates from [Voucherify](http://www.voucherify.io/?utm_source=inbound&utm_medium=github&utm_campaign=js-voucher-code-generator-beta).
+
 ### Usage
 
 Install with npm:
