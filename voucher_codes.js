@@ -11,12 +11,21 @@
         return arr[randomInt(0, arr.length - 1)];
     }
 
+    function charset(name) {
+        var charsets = {
+            numbers: "0123456789",
+            alphabetic: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            alphanumeric: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        };
+        return charsets[name];
+    }
+
     function generateOne(config) {
         var length = config.length || 8;
-        var charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var chars = config.charset || charset("alphanumeric");
         var code = "";
         for (var i = 0; i < length; i++) {
-            code += randomElem(charset);
+            code += randomElem(chars);
         }
         return code;
     }
@@ -35,7 +44,8 @@
     }
 
     var voucher_codes = {
-        generate: generate
+        generate: generate,
+        charset: charset
     };
 
     if (typeof exports !== 'undefined') {
