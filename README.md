@@ -26,3 +26,18 @@ voucher_codes.generate({
 ```
 
 Sample result: `['FR6bwx1q', 'ByamOdWV', '7roFwfQs', 'rmWlwvll', 'pgih5eAB']`
+
+
+### Testing
+
+Install dependencies:
+
+```
+npm install
+```
+
+Run tests:
+
+```
+npm run test
+```
