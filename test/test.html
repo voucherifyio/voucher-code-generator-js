@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../voucher_codes.js"></script>
+</head>
+<body>
+    <ul id="codes"></ul>
+    <script>
+        var codesList = document.getElementById("codes");
+        var codes = voucher_codes.generate({
+            length: 6,
+            count: 4
+        });
+        codes.forEach(function(code) {
+            codesList.innerHTML += "<li>" + code + "</li>";
+        });
+    </script>
+</body>
+</html>
