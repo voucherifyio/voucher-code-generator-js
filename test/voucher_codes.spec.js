@@ -36,7 +36,7 @@ describe('voucher_codes', function(){
             length: 10,
             charset: numbers
         })[0];
-        
+
         expect(code.length).toBe(10);
         code.split('').forEach(function(char) {
             expect(numbers).toContain(char);
