@@ -1,0 +1,29 @@
+{
+  "name": "voucher-code-generator",
+  "description": "Voucher Code Generator",
+  "main": "voucher_codes.js",
+  "authors": [
+    "rspective"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "voucher",
+    "coupon",
+    "discount",
+    "gift",
+    "card",
+    "code",
+    "generator"
+  ],
+  "homepage": "https://github.com/rspective/voucher-code-generator-js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
