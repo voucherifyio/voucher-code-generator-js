@@ -27,6 +27,36 @@ describe('voucher_codes', function(){
             expect(code.length).toBe(2);
             expect(codes.indexOf(code)).toBe(codes.lastIndexOf(code)); // check uniqueness
         })
-    })
+    });
+
+    it('should generate a code consisting of numbers only', function(){
+        var numbers = "0123456789";
+        var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var code = voucher_codes.generate({
+            length: 10,
+            charset: numbers
+        })[0];
+
+        expect(code.length).toBe(10);
+        code.split('').forEach(function(char) {
+            expect(numbers).toContain(char);
+            expect(letters).not.toContain(char);
+        });
+    });
+
+    it('should generate a code consisting of letters only', function(){
+        var numbers = "0123456789";
+        var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var code = voucher_codes.generate({
+            length: 10,
+            charset: letters
+        })[0];
+
+        expect(code.length).toBe(10);
+        code.split('').forEach(function(char) {
+            expect(letters).toContain(char);
+            expect(numbers).not.toContain(char);
+        });
+    });
 
 });
