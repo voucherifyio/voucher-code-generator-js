@@ -1,0 +1,39 @@
+{
+    "name": "voucher-code-generator",
+    "version": "0.0.1",
+
+    "homepage": "http://www.voucherify.io/",
+    "description": "Voucher Code Generator",
+
+    "author": "rspective",
+    "license": "MIT",
+    "main": "voucher_codes.js",
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rspective/voucher-code-generator-js.git"
+    },
+
+    "bugs": {
+        "url": "https://github.com/rspective/voucher-code-generator-js/issue",
+        "email": "dev@rspective.pl"
+    },
+
+    "keywords": [
+        "voucher",
+        "coupon",
+        "discount",
+        "gift",
+        "card",
+        "code",
+        "generator"
+    ],
+
+    "devDependencies": {
+      "jasmine-node": "~1.14.5"
+    },
+
+    "scripts": {
+        "test": "./node_modules/.bin/jasmine-node ./test"
+    }
+}
