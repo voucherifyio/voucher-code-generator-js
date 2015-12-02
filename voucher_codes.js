@@ -8,7 +8,7 @@ function randomElem(arr) {
     return arr[randomInt(0, arr.length-1)];
 }
 
-function generate(config) {
+function generateOne(config) {
     var length = config.length || 8;
     var charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var code = "";
@@ -16,6 +16,19 @@ function generate(config) {
         code += randomElem(charset);
     }
     return code;
+}
+
+function generate(config) {
+    var count = config.count || 1;
+    var codes = {};
+    while (count > 0) {
+        var code =  generateOne(config);
+        if (codes[code] === undefined) {
+            codes[code] = true;
+            count--;
+        }
+    }
+    return Object.keys(codes);
 }
 
 module.exports = {
