@@ -59,4 +59,29 @@ describe('voucher_codes', function(){
         });
     });
 
+    it('should generate code with prefix', function(){
+        var code = voucher_codes.generate({
+            prefix: "promo-"
+        })[0];
+
+        expect(code).toMatch(/^promo-/);
+    });
+
+    it('should generate code with postfix', function(){
+        var code = voucher_codes.generate({
+            postfix: "-extra"
+        })[0];
+
+        expect(code).toMatch(/-extra$/);
+    });
+
+    it('should generate code with prefix', function(){
+        var code = voucher_codes.generate({
+            prefix: "promo-",
+            postfix: "-extra"
+        })[0];
+
+        expect(code).toMatch(/^promo-.*-extra$/);
+    });
+
 });
