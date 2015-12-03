@@ -16,6 +16,13 @@ describe('voucher_codes', function(){
         expect(code.length).toBe(default_length);
     });
 
+    it('should generate code if no config provided', function(){
+        var default_length = 8;
+        var code = voucher_codes.generate()[0];
+
+        expect(code.length).toBe(default_length);
+    });
+
     it('should generate 5 unique codes', function(){
         var codes = voucher_codes.generate({
             length: 2,
