@@ -72,6 +72,31 @@ voucher_codes.generate({
 
 Result: `["odghy", "kZEYc", "eOTCl", "wVCzD"]`
 
+#### Prefix and Postfix
+
+You can optionally surround each generated code with a prefix and/or postfix.
+ 
+For instance:
+```
+voucher_codes.generate({
+    prefix: "promo-",
+    postfix: "-2015"
+});
+```
+
+Result: `["promo-WZ4x1t3U-2015"]`
+
+#### Config reference
+
+| attribute        | default value  | description                                                             |
+|------------------|:--------------:|-------------------------------------------------------------------------|
+| `length`         | `8`            | Number of characters in a generated code (excluding prefix and postfix) |
+| `count`          | `1`            | Number of codes generated.                                              |
+| `charset`        | `alphanumeric` | Characters that can appear in the code.                                 |
+| `prefix`         | `""`           | A text appended before the code.                                        |
+| `postfix`        | `""`           | A text appended after the code.                                         |
+
+
 ### Testing
 
 Install dependencies:

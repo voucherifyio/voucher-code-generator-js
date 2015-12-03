@@ -23,14 +23,17 @@
     function generateOne(config) {
         var length = config.length || 8;
         var chars = config.charset || charset("alphanumeric");
+        var prefix = config.prefix || "";
+        var postfix = config.postfix || "";
         var code = "";
         for (var i = 0; i < length; i++) {
             code += randomElem(chars);
         }
-        return code;
+        return prefix + code + postfix;
     }
 
     function generate(config) {
+        config = config || {};
         var count = config.count || 1;
         var codes = {};
         while (count > 0) {
