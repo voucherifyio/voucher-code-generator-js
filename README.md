@@ -86,15 +86,31 @@ voucher_codes.generate({
 
 Result: `["promo-WZ4x1t3U-2015"]`
 
+#### Pattern
+
+Codes may follow a specified pattern. Use hash (`#`) as a placeholder for random characters. 
+Notice that if `pattern` is specified then `length` is ignored.
+
+Example:
+
+```
+voucher_codes.generate({
+    pattern: "##-###-##",
+});
+```
+
+Result: `["P7-ofW-Ka"]`
+
 #### Config reference
 
-| attribute        | default value  | description                                                             |
-|------------------|:--------------:|-------------------------------------------------------------------------|
-| `length`         | `8`            | Number of characters in a generated code (excluding prefix and postfix) |
-| `count`          | `1`            | Number of codes generated.                                              |
-| `charset`        | `alphanumeric` | Characters that can appear in the code.                                 |
-| `prefix`         | `""`           | A text appended before the code.                                        |
-| `postfix`        | `""`           | A text appended after the code.                                         |
+| attribute        | default value  | description                                                                     |
+|------------------|:--------------:|---------------------------------------------------------------------------------|
+| `length`         | `8`            | Number of characters in a generated code (excluding prefix and postfix)         |
+| `count`          | `1`            | Number of codes generated.                                                      |
+| `charset`        | `alphanumeric` | Characters that can appear in the code.                                         |
+| `prefix`         | `""`           | A text appended before the code.                                                |
+| `postfix`        | `""`           | A text appended after the code.                                                 |
+| `pattern`        | `"########"`   | A pattern for codes where hashes (`#`) will be replaced with random characters. |
 
 
 ### Testing

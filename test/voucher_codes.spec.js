@@ -91,4 +91,12 @@ describe('voucher_codes', function(){
         expect(code).toMatch(/^promo-.*-extra$/);
     });
 
+    it('should generate code from pattern', function(){
+        var code = voucher_codes.generate({
+            pattern: "##-###-##"
+        })[0];
+
+        expect(code).toMatch(/^([0-9a-zA-Z]){2}-([0-9a-zA-Z]){3}-([0-9a-zA-Z]){2}$/);
+    });
+
 });
