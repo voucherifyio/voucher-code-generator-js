@@ -101,8 +101,6 @@ voucher_codes.generate({
 
 Result: `["P7-ofW-Ka"]`
 
-
-
 #### Config reference
 
 | attribute        | default value  | description                                                                     |
