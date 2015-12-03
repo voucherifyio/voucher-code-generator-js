@@ -33,6 +33,7 @@
     }
 
     function generate(config) {
+        config = config || {};
         var count = config.count || 1;
         var codes = {};
         while (count > 0) {
