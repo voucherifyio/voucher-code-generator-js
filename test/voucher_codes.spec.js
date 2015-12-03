@@ -64,7 +64,7 @@ describe('voucher_codes', function(){
             prefix: "promo-"
         })[0];
 
-        expect(code.length).toMatch(/^promo-/);
+        expect(code).toMatch(/^promo-/);
     });
 
     it('should generate code with postfix', function(){
@@ -72,16 +72,24 @@ describe('voucher_codes', function(){
             postfix: "-extra"
         })[0];
 
-        expect(code.length).toMatch(/-extra$/);
+        expect(code).toMatch(/-extra$/);
     });
 
-    it('should generate code with prefix', function(){
+    it('should generate code with prefix and postfix', function(){
         var code = voucher_codes.generate({
             prefix: "promo-",
             postfix: "-extra"
         })[0];
 
-        expect(code.length).toMatch(/^promo-.*-extra$/);
+        expect(code).toMatch(/^promo-.*-extra$/);
+    });
+
+    it('should generate code from pattern', function(){
+        var code = voucher_codes.generate({
+            pattern: "##-###-##"
+        })[0];
+
+        expect(code).toMatch(/^([0-9a-zA-Z]){2}-([0-9a-zA-Z]){3}-([0-9a-zA-Z]){2}$/);
     });
 
 });
