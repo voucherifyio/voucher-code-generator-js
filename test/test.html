@@ -6,16 +6,32 @@
     <script src="../voucher_codes.js"></script>
 </head>
 <body>
-    <ul id="codes"></ul>
+    <h1>basic codes</h1>
+    <ul id="basic-codes"></ul>
+
+    <h1>pattern codes</h1>
+    <ul id="pattern-codes"></ul>
+
     <script>
-        var codesList = document.getElementById("codes");
-        var codes = voucher_codes.generate({
+        var basicCodes = voucher_codes.generate({
             length: 6,
-            count: 4
+            count: 5
         });
-        codes.forEach(function(code) {
-            codesList.innerHTML += "<li>" + code + "</li>";
+
+        var patternCodes = voucher_codes.generate({
+            pattern: "###-###-###",
+            count: 5
         });
+
+        function fillList(listId, items) {
+            var list = document.getElementById(listId);
+            items.forEach(function(item) {
+                list.innerHTML += "<li>" + item + "</li>";
+            });
+        }
+
+        fillList("basic-codes", basicCodes);
+        fillList("pattern-codes", patternCodes);
     </script>
 </body>
 </html>
