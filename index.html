@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Voucher-code-generator-js by rspective</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Voucher-code-generator-js</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/rspective/voucher-code-generator-js">View the Project on GitHub <small>rspective/voucher-code-generator-js</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/rspective/voucher-code-generator-js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/rspective/voucher-code-generator-js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/rspective/voucher-code-generator-js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a id="voucher-code-generator" class="anchor" href="#voucher-code-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Voucher Code Generator</h2>
+
+<p>Generate unique, hard to guess coupon, voucher codes.</p>
+
+<p>This library originates from <a href="http://www.voucherify.io/?utm_source=inbound&amp;utm_medium=github&amp;utm_campaign=js-voucher-code-generator-beta">Voucherify</a>.</p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+
+<h4>
+<a id="in-nodejs" class="anchor" href="#in-nodejs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>In Node.js</h4>
+
+<p>Install with npm:</p>
+
+<pre><code>$ npm install --save voucher-code-generator
+</code></pre>
+
+<p>Include with require:</p>
+
+<pre><code>var voucher_codes = require('voucher-code-generator');
+</code></pre>
+
+<h4>
+<a id="in-a-browser" class="anchor" href="#in-a-browser" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>In a browser</h4>
+
+<pre><code>&lt;script src="voucher_codes.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>Generate 5 codes, each 8 characters long:</p>
+
+<pre><code>voucher_codes.generate({
+    length: 8,
+    count: 5
+});
+</code></pre>
+
+<p>Sample result: <code>["FR6bwx1q", "ByamOdWV", "7roFwfQs", "rmWlwvll", "pgih5eAB"]</code></p>
+
+<h4>
+<a id="charset" class="anchor" href="#charset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Charset</h4>
+
+<p>Default charset is alphanumeric (numbers and letters). However, you can specify your own charset:</p>
+
+<pre><code>voucher_codes.generate({
+    length: 6,
+    count: 3,
+    charset: "0123456789"
+});
+</code></pre>
+
+<p>Sample result: <code>["386525", "676442", "019075"]</code></p>
+
+<p>You can also use one of the predefined charsets by calling <code>voucher_codes.charset(name)</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>charset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"numbers"</code></td>
+<td><code>"0123456789"</code></td>
+</tr>
+<tr>
+<td><code>"alphabetic"</code></td>
+<td><code>"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</code></td>
+</tr>
+<tr>
+<td><code>"alphanumeric"</code></td>
+<td><code>"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>For example:</p>
+
+<pre><code>voucher_codes.generate({
+    length: 5,
+    count: 4,
+    charset: voucher_codes.charset("alphabetic")
+});
+</code></pre>
+
+<p>Result: <code>["odghy", "kZEYc", "eOTCl", "wVCzD"]</code></p>
+
+<h4>
+<a id="prefix-and-postfix" class="anchor" href="#prefix-and-postfix" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prefix and Postfix</h4>
+
+<p>You can optionally surround each generated code with a prefix and/or postfix.</p>
+
+<p>For instance:</p>
+
+<pre><code>voucher_codes.generate({
+    prefix: "promo-",
+    postfix: "-2015"
+});
+</code></pre>
+
+<p>Result: <code>["promo-WZ4x1t3U-2015"]</code></p>
+
+<h4>
+<a id="pattern" class="anchor" href="#pattern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pattern</h4>
+
+<p>Codes may follow a specified pattern. Use hash (<code>#</code>) as a placeholder for random characters. 
+Notice that if <code>pattern</code> is specified then <code>length</code> is ignored.</p>
+
+<p>Example:</p>
+
+<pre><code>voucher_codes.generate({
+    pattern: "##-###-##",
+});
+</code></pre>
+
+<p>Result: <code>["P7-ofW-Ka"]</code></p>
+
+<h4>
+<a id="config-reference" class="anchor" href="#config-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Config reference</h4>
+
+<table>
+<thead>
+<tr>
+<th>attribute</th>
+<th align="center">default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>length</code></td>
+<td align="center"><code>8</code></td>
+<td>Number of characters in a generated code (excluding prefix and postfix)</td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td align="center"><code>1</code></td>
+<td>Number of codes generated.</td>
+</tr>
+<tr>
+<td><code>charset</code></td>
+<td align="center"><code>alphanumeric</code></td>
+<td>Characters that can appear in the code.</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td align="center"><code>""</code></td>
+<td>A text appended before the code.</td>
+</tr>
+<tr>
+<td><code>postfix</code></td>
+<td align="center"><code>""</code></td>
+<td>A text appended after the code.</td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td align="center"><code>"########"</code></td>
+<td>A pattern for codes where hashes (<code>#</code>) will be replaced with random characters.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>Install dependencies:</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>Run tests:</p>
+
+<pre><code>npm run test
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/rspective">rspective</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
