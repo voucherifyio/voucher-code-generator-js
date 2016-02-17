@@ -126,3 +126,7 @@ Run tests:
 ```
 npm run test
 ```
+
+### License
+
+Code released under the [MIT license](LICENSE).
