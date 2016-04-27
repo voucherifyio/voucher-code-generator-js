@@ -2,6 +2,8 @@
 
 Generate unique, hard to guess coupon, voucher codes.
 
+Use cases: promo codes, loyalty coupons, gift vouchers, in-app purchases
+
 This library originates from [Voucherify](http://www.voucherify.io/?utm_source=inbound&utm_medium=github&utm_campaign=js-voucher-code-generator-beta).
 
 ### Installation
