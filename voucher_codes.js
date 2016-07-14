@@ -1,3 +1,11 @@
+/**
+ * Copyright 2015 rspective (http://rspective.com)
+ * All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 ;(function() {
     "use strict";
 
@@ -28,25 +36,38 @@
         return res;
     }
 
+    function Config(config) {
+        config = config || {};
+        this.count = config.count || 1;
+        this.length = config.length || 8;
+        this.charset = config.charset || charset("alphanumeric");
+        this.prefix = config.prefix || "";
+        this.postfix = config.postfix || "";
+        this.pattern = config.pattern || repeat("#", this.length);
+    }
+
     function generateOne(config) {
-        var length = config.length || 8;
-        var chars = config.charset || charset("alphanumeric");
-        var prefix = config.prefix || "";
-        var postfix = config.postfix || "";
-        var pattern = config.pattern || repeat("#", length);
-        var code = pattern.split('').map(function(char) {
+        var code = config.pattern.split('').map(function(char) {
             if (char === '#') {
-                return randomElem(chars);
+                return randomElem(config.charset);
             } else {
                 return char;
             }
         }).join('');
-        return prefix + code + postfix;
+        return config.prefix + code + config.postfix;
+    }
+
+    function isFeasible(charset, pattern, count) {
+        return Math.pow(charset.length, pattern.match(/#/g).length) >= count;
     }
 
     function generate(config) {
-        config = config || {};
-        var count = config.count || 1;
+        config = new Config(config);
+        var count = config.count;
+        if (!isFeasible(config.charset, config.pattern, config.count)) {
+            throw new Error("Not possible to generate requested number of codes.");
+        }
+
         var codes = {};
         while (count > 0) {
             var code = generateOne(config);

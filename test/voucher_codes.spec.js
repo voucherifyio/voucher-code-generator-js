@@ -99,4 +99,16 @@ describe('voucher_codes', function(){
         expect(code).toMatch(/^([0-9a-zA-Z]){2}-([0-9a-zA-Z]){3}-([0-9a-zA-Z]){2}$/);
     });
 
+    it('should detect infeasible config', function(){
+        var config = {
+            count: 1000,
+            charset: "abc",
+            length: 5
+        }; // there are only 125 (5^3) possible codes for this config
+
+        expect(function() {
+            voucher_codes.generate(config);
+        }).toThrow("Not possible to generate requested number of codes.");
+    })
+
 });
