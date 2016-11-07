@@ -58,7 +58,7 @@
     }
 
     function isFeasible(charset, pattern, count) {
-        return Math.pow(charset.length, pattern.match(/#/g).length) >= count;
+        return Math.pow(charset.length, (pattern.match(/#/g) || []).length) >= count;
     }
 
     function generate(config) {

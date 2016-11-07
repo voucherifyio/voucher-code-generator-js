@@ -109,6 +109,18 @@ describe('voucher_codes', function(){
         expect(function() {
             voucher_codes.generate(config);
         }).toThrow("Not possible to generate requested number of codes.");
-    })
+    });
+
+    it('should generate fixed code', function(){
+        var config = {
+            count: 1,
+            pattern: "FIXED"
+        };
+
+        var codes = voucher_codes.generate(config);
+
+        expect(codes.length).toEqual(1);
+        expect(codes[0]).toEqual("FIXED");
+    });
 
 });
