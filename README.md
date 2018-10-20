@@ -129,7 +129,8 @@ try {
         count: 1000,
         length: 2,
         charset: "0123456789"
-    })
+    });
+}
 catch (e) {
     console.log("Sorry, not possible.");
 }
