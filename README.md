@@ -3,9 +3,9 @@
 Generate unique, random, and hard to guess coupon / voucher codes.
 Use cases: promo codes, loyalty coupons, gift vouchers, in-app purchases, referral links
 
-This library originates from [Voucherify](https://www.voucherify.io/?utm_source=github&utm_medium=repo&utm_campaign=opensource).
+This library originates from [Voucherify](https://www.voucherify.io).
 
-![https://www.voucherify.io/?utm_source=github&utm_medium=repo&utm_campaign=opensource](https://github.com/voucherifyio/voucherify-java-sdk/raw/master/voucherify-java-sdk.png)
+![https://www.voucherify.io](https://github.com/voucherifyio/voucherify-java-sdk/raw/master/voucherify-java-sdk.png)
 
 Voucherify - programmable building blocks for coupon, referral, and loyalty programs.
 
