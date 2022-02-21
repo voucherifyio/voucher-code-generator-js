@@ -123,4 +123,82 @@ describe('voucher_codes', function(){
         expect(codes[0]).toEqual("FIXED");
     });
 
+    it('should generate single sequential codes from numbers charset', function(){
+        var config = {
+            charset: voucher_codes.charset("numbers"),
+            pattern: "A###Z"
+        };
+
+        expect((voucher_codes.generate(config, 0)).length).toEqual(1);
+
+        expect((voucher_codes.generate(config, 0))[0]).toEqual("A000Z");
+        expect((voucher_codes.generate(config, 1))[0]).toEqual("A001Z");
+        expect((voucher_codes.generate(config, 2))[0]).toEqual("A002Z");
+        expect((voucher_codes.generate(config, 5))[0]).toEqual("A005Z");
+        expect((voucher_codes.generate(config, 9))[0]).toEqual("A009Z");
+        expect((voucher_codes.generate(config, 10))[0]).toEqual("A010Z");
+        expect((voucher_codes.generate(config, 11))[0]).toEqual("A011Z");
+        expect((voucher_codes.generate(config, 99))[0]).toEqual("A099Z");
+        expect((voucher_codes.generate(config, 100))[0]).toEqual("A100Z");
+        expect((voucher_codes.generate(config, 101))[0]).toEqual("A101Z");
+        expect((voucher_codes.generate(config, 101))[0]).toEqual("A101Z");
+        expect((voucher_codes.generate(config, 599))[0]).toEqual("A599Z");
+        expect((voucher_codes.generate(config, 600))[0]).toEqual("A600Z");
+        expect((voucher_codes.generate(config, 601))[0]).toEqual("A601Z");
+    });
+
+    it('should generate series of sequential codes from numbers charset', function(){
+        var config = {
+            charset: voucher_codes.charset("numbers"),
+            pattern: "A###Z",
+            count: 12
+        };
+
+        const codes = voucher_codes.generate(config, 190);
+
+        expect(codes.length).toEqual(12);
+        expect(codes).toEqual(["A190Z", "A191Z", "A192Z", "A193Z", "A194Z", "A195Z", "A196Z", "A197Z", "A198Z", "A199Z", "A200Z", "A201Z"]);
+    });
+
+    it('should generate first or last code when sequenceOffset is out of range', function(){
+        var config = {
+            charset: voucher_codes.charset("numbers"),
+            pattern: "A##Z"
+        };
+
+        expect((voucher_codes.generate(config, -2))[0]).toEqual("A00Z");
+        expect((voucher_codes.generate(config, -1))[0]).toEqual("A00Z");
+        expect((voucher_codes.generate(config, 0))[0]).toEqual("A00Z");
+        expect((voucher_codes.generate(config, 99))[0]).toEqual("A99Z");
+        expect((voucher_codes.generate(config, 100))[0]).toEqual("A99Z");
+        expect((voucher_codes.generate(config, 101))[0]).toEqual("A99Z");
+    });
+
+    it('should generate series of sequential codes from alphabetic charset', function(){
+        var config = {
+            charset: voucher_codes.charset("alphabetic"),
+            pattern: "###",
+            prefix: "prefix-",
+            postfix: "-postfix"
+        };
+
+        expect((voucher_codes.generate(config, 0)).length).toEqual(1);
+
+        expect((voucher_codes.generate(config, 0))[0]).toEqual("prefix-aaa-postfix");
+        expect((voucher_codes.generate(config, 1))[0]).toEqual("prefix-aab-postfix");
+        expect((voucher_codes.generate(config, 2))[0]).toEqual("prefix-aac-postfix");
+        expect((voucher_codes.generate(config, 3))[0]).toEqual("prefix-aad-postfix");
+        expect((voucher_codes.generate(config, 4))[0]).toEqual("prefix-aae-postfix");
+        expect((voucher_codes.generate(config, 5))[0]).toEqual("prefix-aaf-postfix");
+        expect((voucher_codes.generate(config, 15))[0]).toEqual("prefix-aap-postfix");
+        expect((voucher_codes.generate(config, 25))[0]).toEqual("prefix-aaz-postfix");
+        expect((voucher_codes.generate(config, 26))[0]).toEqual("prefix-aaA-postfix");
+        expect((voucher_codes.generate(config, 51))[0]).toEqual("prefix-aaZ-postfix");
+        expect((voucher_codes.generate(config, 52))[0]).toEqual("prefix-aba-postfix");
+        expect((voucher_codes.generate(config, 103))[0]).toEqual("prefix-abZ-postfix");
+        expect((voucher_codes.generate(config, 2703))[0]).toEqual("prefix-aZZ-postfix");
+        expect((voucher_codes.generate(config, 2704))[0]).toEqual("prefix-baa-postfix");
+        expect((voucher_codes.generate(config, 2705))[0]).toEqual("prefix-bab-postfix");
+    });
+
 });
