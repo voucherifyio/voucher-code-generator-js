@@ -129,11 +129,30 @@ try {
         count: 1000,
         length: 2,
         charset: "0123456789"
-    })
+    });
 catch (e) {
     console.log("Sorry, not possible.");
 }
 ```
+
+#### Sequential code
+
+It is possible to generate a specific code from the pool of all possible codes for a config using a `sequenceOffset` parameter.
+The offset must be greater than equal 0, otherwise the first possible combination will be returned.  
+The offset must be less than the number of maximum combinations for a config, otherwise the last possible combination will be returned. 
+It is possible to generate a series of codes starting from `sequenceOffset` by additionally using `count` config parameter.
+
+```
+var sequenceOffset = 52;
+
+voucher_codes.generate({
+    count: 3,
+    length: 2,
+    charset: "0123456789"
+}, sequenceOffset);
+```
+
+Result: `["52", "53", "54"]`
 
 #### Config reference
 
