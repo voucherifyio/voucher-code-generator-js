@@ -39,7 +39,7 @@
         sequenceOffset = 12)  Math.floor(12 / Math.pow(10, 0)) % 10  ->  Math.floor(12 / 1) % 10   ->  2
     */
     function sequenceElem(config, sequenceOffset, charIndex) {
-        return config.charset[Math.floor(sequenceOffset / Math.pow(config.charset.length, config.length - charIndex - 1)) % config.charset.length];
+        return config.unique_charset[Math.floor(sequenceOffset / Math.pow(config.unique_charset.length, config.length - charIndex - 1)) % config.unique_charset.length];
     }
 
     function charset(name) {
@@ -64,6 +64,7 @@
         this.count = config.count || 1;
         this.length = config.length || 8;
         this.charset = config.charset || charset("alphanumeric");
+        this.unique_charset = uniqueCharset(this.charset);
         this.prefix = config.prefix || "";
         this.postfix = config.postfix || "";
         this.pattern = config.pattern || repeat("#", this.length);
@@ -71,6 +72,22 @@
         if (config.pattern) {
             this.length = (config.pattern.match(/#/g) || []).length;
         }
+    }
+
+    function uniqueCharset(charset) {
+        var map = {};
+        var result = [];
+
+        for (var i = 0; i < charset.length; i++) {
+            const sign = charset[i];
+
+            if (!map[sign]) {
+                result.push(sign);
+                map[sign] = true;
+            }
+        }
+
+        return result.join("");
     }
 
     function generateOne(config, sequenceOffset) {
@@ -90,7 +107,7 @@
     }
 
     function maxCombinationsCount (config) {
-        return Math.pow(config.charset.length, config.length);
+        return Math.pow(config.unique_charset.length, config.length);
     }
 
     function isFeasible(config) {
@@ -100,6 +117,7 @@
     function generate(config, sequenceOffset) {
         config = new Config(config);
         var count = config.count;
+
         if (!isFeasible(config)) {
             throw new Error("Not possible to generate requested number of codes.");
         }
@@ -114,16 +132,22 @@
             }
         }
 
-        var codes = {};
+        var map = {};
+        var codes = [];
+
         while (count > 0) {
             var code = generateOne(config, sequenceOffset);
-            if (codes[code] === undefined) {
-                codes[code] = true;
+
+            if (!map[code]) {
+                codes.push(code);
+                map[code] = true;
                 count--;
-                sequenceOffset++;
             }
+
+            sequenceOffset++;
         }
-        return Object.keys(codes);
+
+        return codes;
     }
 
     var voucher_codes = {
