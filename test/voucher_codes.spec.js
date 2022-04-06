@@ -111,6 +111,18 @@ describe('voucher_codes', function(){
         }).toThrow("Not possible to generate requested number of codes.");
     });
 
+    it('should detect infeasible config for charset with duplicates', function(){
+        var config = {
+            count: 2,
+            charset: "11",
+            length: 2
+        }; // there is only 1 possible code for this config
+
+        expect(function() {
+            voucher_codes.generate(config);
+        }).toThrow("Not possible to generate requested number of codes.");
+    });
+
     it('should generate fixed code', function(){
         var config = {
             count: 1,
@@ -199,6 +211,19 @@ describe('voucher_codes', function(){
         expect((voucher_codes.generate(config, 2703))[0]).toEqual("prefix-aZZ-postfix");
         expect((voucher_codes.generate(config, 2704))[0]).toEqual("prefix-baa-postfix");
         expect((voucher_codes.generate(config, 2705))[0]).toEqual("prefix-bab-postfix");
+    });
+
+    it('should generate series of sequential codes from charset with duplicates', function(){
+        var config = {
+            charset: "001",
+            pattern: "##",
+            count: 4
+        };
+
+        const codes = voucher_codes.generate(config, 0);
+
+        expect(codes.length).toEqual(4);
+        expect(codes).toEqual(["00", "01", "10", "11"]);
     });
 
 });
